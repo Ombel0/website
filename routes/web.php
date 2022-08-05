@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
+});
 
 Auth::routes();
 
@@ -26,4 +26,4 @@ Auth::routes();
 
 Route::get('/redirect', [App\Http\Controllers\HomeController::class, 'redirect']);
 
-Route::get('', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);

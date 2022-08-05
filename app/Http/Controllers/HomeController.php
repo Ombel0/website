@@ -39,7 +39,7 @@ class HomeController extends Controller
        }
        else
        {
-        return view('home');
+        return view('user.home');
        }
     }
 }
