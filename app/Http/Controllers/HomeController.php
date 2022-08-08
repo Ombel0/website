@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 
 class HomeController extends Controller
 {
@@ -31,7 +34,9 @@ class HomeController extends Controller
         }
         else
         {
-            return view('user.home');
+            $data = product::paginate(3);    //product::all()
+
+            return view('user.home',compact('data'));
         }
 
     }
@@ -43,11 +48,13 @@ class HomeController extends Controller
 
        if($usertype == '1')
        {
-        return view('admin.home');
+        return view('admin.home');     //page welcome
        }
+
        else
        {
-        return view('user.home');
+        $data = product::paginate(3);  //product::all()
+        return view('user.home',compact('data'));
        }
     }
 }

@@ -31,4 +31,5 @@ Route::get('/redirect', [App\Http\Controllers\HomeController::class, 'redirect']
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/product', [App\Http\Controllers\AdminController::class, 'product']);
+
 Route::post('/uploadproduct', [App\Http\Controllers\AdminController::class, 'uploadproduct']);
