@@ -36,4 +36,9 @@ Route::post('/uploadproduct', [App\Http\Controllers\AdminController::class, 'upl
 
 Route::get('/showproduct',[App\Http\Controllers\AdminController::class, 'showproduct']);
 Route::get('/deleteproduct/{id}',[App\Http\Controllers\AdminController::class, 'deleteproduct']);
+Route::get('/updateview/{id}',[App\Http\Controllers\AdminController::class, 'updateview']);
 
+Route::post('/updateproduct/{id}',[App\Http\Controllers\AdminController::class, 'updateproduct']);
+
+
+Route::get('/search',[App\Http\Controllers\HomeController::class, 'search']);

@@ -3,6 +3,7 @@
   <head>
 
    @include('admin.css')
+
      <style type="text/css">
      .title
      {
@@ -19,6 +20,7 @@
      }
 
      </style>
+     
   </head>
 
 

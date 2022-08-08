@@ -42,6 +42,32 @@ class HomeController extends Controller
     }
 
 
+
+
+       public function search(Request $request)
+
+        {
+
+            $search = $request->search;
+
+              if($search == '')
+            {
+                $data = product::paginate(3);    //product::all()
+
+                return view('user.home',compact('data'));
+            }
+
+
+            $data = Product::where('title','like','%'.$search.'%')->get() ;
+
+            return view('user.home',compact('data'));
+
+
+        }
+
+
+
+
     public function redirect()
     {
        $usertype = Auth::user()->usertype;
