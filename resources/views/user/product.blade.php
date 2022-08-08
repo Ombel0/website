@@ -54,13 +54,9 @@
 @foreach ($data as $product)
 
  <div class="col-4">
-
    <img src="/productimage/{{$product->image}}">
-
      <h4>{{ $product->title }}</h4>
      <p>{{ $product->description}}</p>
-
-
      <div class="rating">
         <i class="fa fa-star"></i>
         <i class="fa fa-star"></i>
@@ -68,17 +64,11 @@
         <i class="fa fa-star"></i>
         <i class="fa fa-star-o"></i>
      </div>
-
       <p>{{ $product->price }}dh</p>
-
    </div>
-
    @endforeach
-
    <div class="d-flex justify-content-center">
-
      {!! $data->links() !!}
-     
    </div>
 
 </div>

@@ -14,13 +14,13 @@ class AdminController extends Controller
 
     public function uploadproduct(Request $request)
      {
-       $data = new Product;
+       $data = new Product;   //object
        $image = $request->file;
        $imagename= time().'.'.$image->getClientOriginalExtension();
        $request->file->move('productimage',$imagename);
        $data->image = $imagename;
 
-        $data->title = $request->title;
+        $data->title = $request->title; //  PAGE BLADE
         $data->price = $request->price;
         $data->description = $request->des;
         $data->quantity = $request->quantity;
@@ -29,6 +29,22 @@ class AdminController extends Controller
 
         return redirect()->back()->with('message','Added successfuly');
 
+     }
+
+
+     public function showproduct()
+     {
+         $data = product::all();
+       return view('admin.showproduct', compact('data'));
 
      }
+
+
+     public function deleteproduct($id)
+     {
+        $data = product::find($id);
+         $data->delete();
+         return redirect()->back()->with('message',' Product  Deleted successfuly');
+     }
 }
+
