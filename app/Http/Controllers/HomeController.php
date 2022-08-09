@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 use App\Models\User;
 
 
@@ -82,5 +84,37 @@ class HomeController extends Controller
         $data = product::paginate(3);  //product::all()
         return view('user.home',compact('data'));
        }
+    }
+
+
+
+    public function addcart(Request $request,$id)
+    {
+          if(Auth::id())
+          {
+            $user = auth()->user();
+
+            $product = Product::find($id);
+
+            $cart = new Cart ;
+
+            $cart->name = $user->name;  //omar data base
+            $cart->phone = $user->phone;
+            $cart->address = $user->adress;
+            $cart->product_title = $product->title;
+            $cart->price = $product->price;
+            $cart->quantity = $request->quantity;
+
+
+            $cart->save();
+
+             return redirect()->back()->with('message',' Add Product  successfuly');
+          }
+
+          else
+
+          {
+            return redirect('login');
+          }
     }
 }

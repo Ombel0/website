@@ -42,3 +42,7 @@ Route::post('/updateproduct/{id}',[App\Http\Controllers\AdminController::class, 
 
 
 Route::get('/search',[App\Http\Controllers\HomeController::class, 'search']);
+
+
+
+Route::post('/addcart/{id}',[App\Http\Controllers\HomeController::class, 'addcart']);

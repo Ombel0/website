@@ -21,17 +21,43 @@
 
 <!--featured products-->
 
+
+
+
+
  <div class="small-container">
       <h2 class="title">Featured Products</h2>
        <div class="row">
 
+
+        @if(session()->has('message'))
+        <div class="alert alert-success">
+           <button type="button" class="close" data-dismiss="alert"> X</button>   <!--message sussessfuly-->
+
+             {{ session()->get('message')  }}
+
+        </div>
+        @endif
+
+
+
+
         @foreach ($data as $product)
 
          <div class="col-4">
+
             <img src="/productimage/{{$product->image}}">
              <h4>{{$product->title}}</h4>
              <p>{{ $product->description }}</p>
-             <a class="btn btn-primary" href="">Add Cart</a>
+
+             <form action="{{ url('addcart',$product->id) }}" method="POST">
+                @csrf
+                <input type="number" value="1" min="1" class="form-control" style="width: 100px" name="quantity">
+                 <br>
+
+               <input class="btn btn-primary" type="submit" value="Add Cart">
+             </form>
+
              <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -49,6 +75,19 @@
 <!--------latest Products----->
 
 <!--search product -->
+
+
+
+@if(session()->has('message'))
+<div class="alert alert-success">
+   <button type="button" class="close" data-dismiss="alert"> X</button>   <!--message sussessfuly-->
+
+     {{ session()->get('message')  }}
+
+</div>
+@endif
+
+
 <form  action="{{ url('search') }}" method="get" class="from-inline" style="float: right; padding:10px;" >
 @csrf
     <input type="search" name="search" placeholder="search">
@@ -65,9 +104,18 @@
 
  <div class="col-4">
    <img src="/productimage/{{$product->image}}">
+
      <h4>{{ $product->title }}</h4>
      <p>{{ $product->description}}</p>
-     <a class="btn btn-primary" href="">Add Cart</a>
+
+     <form action="{{ url('addcart', $product->id) }}" method="POST">
+        @csrf
+        <input type="number" value="1" min="1" class="form-control" style="width: 100px" name="">
+         <br>
+
+       <input class="btn btn-primary" type="submit" value="Add Cart">
+     </form>
+
      <div class="rating">
         <i class="fa fa-star"></i>
         <i class="fa fa-star"></i>
@@ -77,6 +125,7 @@
      </div>
       <p>{{ $product->price }}dh</p>
    </div>
+
    @endforeach
 
 
