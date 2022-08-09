@@ -58,7 +58,6 @@
 
         </ul>
     </nav>
-    <!-------- links Showcart  ----->
      <a class="nav-link" href="{{ url('showcart') }} "> <img  src="img/cart.png"  width="30px" height="30px">[{{ $count }}]</a>
    </div>
    <div class="row">
@@ -70,87 +69,37 @@
       <img src="img/image11.png">
     </div>
 
+<div style="padding: 100px;" align="center">
+<table>
+
+
+<tr style="background-color:gray;">
+    <td style="padding: 30px; font-size :40 px; color:white;">Product Name</td>
+    <td style="padding: 30px; font-size :40 px; color:white;" >Quantity</td>
+    <td style="padding: 30px; font-size :40 px; color:white;">Price</td>
+
+</tr>
+@foreach ($cart as $carts )
+
+
+<tr style="background-color: black;">
+<td style="padding:30px; color:white">{{ $carts->product_title }} </td>
+<td style="padding:30px; color:white"> {{ $carts->quantity}}</td>
+<td style="padding:30px; color:white">{{ $carts->price }} </td>
+</tr>
+@endforeach
+</table>
+</div>
+
+
+
+
+
+
    </div>
  </div>
 </div>
 
-<!--------featured categories----->
-
-
-<!--------featured categories----->
-
-<!--------latest Products----->
-
-
-@include('user.product')
-
-<!--------latest Products----->
-
-
- <!--------offers----->
-
-
- <div class="offer">
-     <div class="small-container">
-        <div class="row">
-          <div class="col-2">
-              <img src="img/III.png"class="offer-img">
-          </div>
-              <div class="col-2">
-               <p>Exclusively Available on Belshooop</p>
-                <h1>Smart Bnad 2021</h1>
-               <small>The mi smart bad E18 features a 30.9% larger</small>
-               <a href=""class="btn">Buy Now &#8594;</a>
-              </div>
-       </div>
-     </div>
-   </div>
-   <!--------TEST IMONIAL----->
-   <div class="testimonial">
-     <div class="small-container">
-         <div class="row">
-             <div class="col-3">
-                 <i class="fa fa-quote-left"></i>
-                 <p>lorem ipsum is simply dummy test of the printing and typesetting</p>
-               <div class="rating">
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star-o"></i>
-               </div>
-               <img src="img/user-1.png">
-               <h3>Angel hellena</h3>
-             </div>
-              <div class="col-3">
-                 <i class="fa fa-quote-left"></i>
-                 <p>lorem ipsum is simply dummy test of the printing and typesetting</p>
-               <div class="rating">
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star-o"></i>
-               </div>
-               <img src="img/user-2.png">
-               <h3>Alex</h3>
-             </div>
-              <div class="col-3">
-                 <i class="fa fa-quote-left"></i>
-                 <p>lorem ipsum is simply dummy test of the printing and typesetting</p>
-               <div class="rating">
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star"></i>
-                 <i class="fa fa-star-o"></i>
-               </div>
-               <img src="img/user-3.png">
-               <h3>Sandra</h3>
-             </div>
-         </div>
-     </div>
-   </div>
      <!--------brands----->
      <div class="brands">
      <div class="small-container">
@@ -210,7 +159,7 @@
                 </div>
             </div>
          </div>
-         <hr>
+
        <p class="copyright">&copy2021; OMAR BELGHALI . wwww.omarbelghali.com</p>
 
      </div>
