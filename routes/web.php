@@ -49,3 +49,11 @@ Route::post('/addcart/{id}',[App\Http\Controllers\HomeController::class, 'addcar
 
 
 Route::get('/showcart',[App\Http\Controllers\HomeController::class, 'showcart']);
+
+
+Route::get('/delete/{id}',[App\Http\Controllers\HomeController::class, 'deletecart']);
+
+
+
+
+Route::post('/order',[App\Http\Controllers\HomeController::class, 'confirmorder']); 

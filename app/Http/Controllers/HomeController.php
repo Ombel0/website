@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Models\User;
-
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,9 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
+
+// METHOD INDEX
+
     public function index()
     {
         if(Auth::id())
@@ -44,7 +48,7 @@ class HomeController extends Controller
     }
 
 
-
+// METHOD SEARCH
 
        public function search(Request $request)
 
@@ -69,6 +73,7 @@ class HomeController extends Controller
 
 
 
+// METHOD REDIRECT
 
     public function redirect()
     {
@@ -89,7 +94,7 @@ class HomeController extends Controller
        }
     }
 
-
+// METHOD ADDCART
 
     public function addcart(Request $request,$id)
     {
@@ -121,14 +126,63 @@ class HomeController extends Controller
           }
     }
 
+//    METHOD SHOWCART
 
     public function showcart()
     {
         $user = auth()->user();
+
         $cart = cart::where('phone',$user->phone)->get();
         $count = cart::where('phone' , $user->phone)->count();
 
         return view('user.showcart',compact('count','cart'));
     }
+
+
+//METHOD DELETECART
+    public function deletecart($id)
+    {
+        $data = cart::find($id);
+
+        $data->delete();
+
+        return redirect()->back()->with('message','  Product Revomed successfuly');
+    }
+//METHOD CONFIRMORDER
+
+public function confirmorder(Request $request)
+{
+      $user = auth()->user();
+
+      $name = $user->name;
+      $phone = $user->phone;
+      $address = $user->address;
+
+
+
+
+
+      foreach($request->productname as   $key=>$productname)
+
+      {
+             $order = new Order;  // create object order
+
+
+             $order->product_name = $request->productname[$key];
+             $order->price = $request->price[$key];
+             $order->quantity  =  $request->quantity[$key];
+             $order->name = $name;
+             $order->phone  = $phone;
+             $order->address   = $address;
+
+             $order->save();
+      }
+
+      DB::table('carts')->where('phone',$phone)->delete();   // when the request is confirmed deleted
+
+      return redirect()->back()->with('message','  Order successfuly');
+
+}
+
 }
 

@@ -69,7 +69,26 @@
       <img src="img/image11.png">
     </div>
 
+
+    @if(session()->has('message'))
+    <div class="alert alert-success">
+       <button type="button" class="close" data-dismiss="alert"> X</button>   <!--message sussessfuly-->
+
+         {{ session()->get('message')  }}
+
+         @endif
+
+
 <div style="padding: 100px;" align="center">
+
+
+<!--table for showcart -->
+
+
+<!--fORM AND CONFIRME ORDER -->
+
+<form action=" {{ url('order') }}" method="POST">
+@csrf
 <table>
 
 
@@ -77,18 +96,26 @@
     <td style="padding: 30px; font-size :40 px; color:white;">Product Name</td>
     <td style="padding: 30px; font-size :40 px; color:white;" >Quantity</td>
     <td style="padding: 30px; font-size :40 px; color:white;">Price</td>
+    <td style="padding: 30px; font-size :40 px; color:white;">Action</td>
 
 </tr>
+
 @foreach ($cart as $carts )
 
 
 <tr style="background-color: black;">
-<td style="padding:30px; color:white">{{ $carts->product_title }} </td>
-<td style="padding:30px; color:white"> {{ $carts->quantity}}</td>
-<td style="padding:30px; color:white">{{ $carts->price }} </td>
+<td style="padding:30px; color:white;"> {{ $carts->product_title }}  <input type="text" name="productname[]" value="{{ $carts->product_title }}" hidden="" >  </td>
+<td style="padding:30px; color:white;"> {{ $carts->quantity}} <input type="text" name="quantity[]" value="{{ $carts->quantity }}"  hidden="">  </td>
+<td style="padding:30px; color:white;"> {{ $carts->price }} <input type="text" name="price[]" value="{{ $carts->price}}"  hidden="">  </td>
+<td style="padding:30px; color:white;">  <a class="btn btn-danger" href="{{ url('delete', $carts->id) }}">Delete</a>  </td>      <!--boutton deleted -->
+
 </tr>
+
 @endforeach
+
 </table>
+<button class="btn btn-success"> Confirme Order </button>
+</form>
 </div>
 
 

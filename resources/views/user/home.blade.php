@@ -59,7 +59,7 @@
         </ul>
     </nav>
     <!-------- links Showcart  ----->
-     <a class="nav-link" href="{{ url('showcart') }} "> <img  src="img/cart.png"  width="30px" height="30px">[{{ $count }}]</a>
+     <a class="nav-link" href="{{ url('showcart') }} "> <img  src="img/cart.png"  width="30px" height="30px">[{{ $count }}]</a> <!--------   VARIABLE BLADE COUNT  ----->
    </div>
    <div class="row">
     <div class="col-2">
