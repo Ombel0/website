@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -79,5 +80,27 @@ class AdminController extends Controller
         return redirect()->back()->with('message','Update successfuly');
 
      }
+
+
+      public function showorder()
+      {
+
+
+        $order = Order::all();
+        return view('admin.showorder', compact('order'));
+      }
+
+
+
+
+       public function updatestatus($id)
+{
+        $order = Order::find($id);
+        $order->status='delivered';
+        $order->save();
+        return redirect()->back();
+}
+
+
 }
 

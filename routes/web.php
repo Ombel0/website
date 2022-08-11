@@ -16,7 +16,6 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,15 +29,7 @@ Route::get('/redirect', [App\Http\Controllers\HomeController::class, 'redirect']
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/product', [App\Http\Controllers\AdminController::class, 'product']);
 
-Route::post('/uploadproduct', [App\Http\Controllers\AdminController::class, 'uploadproduct']);
-
-Route::get('/showproduct',[App\Http\Controllers\AdminController::class, 'showproduct']);
-Route::get('/deleteproduct/{id}',[App\Http\Controllers\AdminController::class, 'deleteproduct']);
-Route::get('/updateview/{id}',[App\Http\Controllers\AdminController::class, 'updateview']);
-
-Route::post('/updateproduct/{id}',[App\Http\Controllers\AdminController::class, 'updateproduct']);
 
 
 Route::get('/search',[App\Http\Controllers\HomeController::class, 'search']);
@@ -56,4 +47,20 @@ Route::get('/delete/{id}',[App\Http\Controllers\HomeController::class, 'deleteca
 
 
 
-Route::post('/order',[App\Http\Controllers\HomeController::class, 'confirmorder']); 
+Route::post('/order',[App\Http\Controllers\HomeController::class, 'confirmorder']);
+
+
+//ROUTE  ADMIN
+
+Route::get('/product', [App\Http\Controllers\AdminController::class, 'product']);
+
+Route::post('/uploadproduct', [App\Http\Controllers\AdminController::class, 'uploadproduct']);
+
+Route::get('/showproduct',[App\Http\Controllers\AdminController::class, 'showproduct']);
+Route::get('/deleteproduct/{id}',[App\Http\Controllers\AdminController::class, 'deleteproduct']);
+Route::get('/updateview/{id}',[App\Http\Controllers\AdminController::class, 'updateview']);
+
+Route::post('/updateproduct/{id}',[App\Http\Controllers\AdminController::class, 'updateproduct']);
+
+Route::get('/showorder',[App\Http\Controllers\AdminController::class, 'showorder']);
+Route::get('/updatestatus/{id}',[App\Http\Controllers\AdminController::class, 'updatestatus']);

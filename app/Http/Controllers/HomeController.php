@@ -40,6 +40,8 @@ class HomeController extends Controller
         }
         else
         {
+
+
             $data = product::paginate(3);    //product::all()
 
             return view('user.home',compact('data'));
@@ -63,10 +65,11 @@ class HomeController extends Controller
                 return view('user.home',compact('data'));
             }
 
-
+            $user = auth()->user();
+            $count = cart::where('phone' , $user->phone)->count();
             $data = Product::where('title','like','%'.$search.'%')->get() ;
 
-            return view('user.home',compact('data'));
+            return view('user.home',compact('data','count'));
 
 
         }
@@ -174,7 +177,7 @@ public function confirmorder(Request $request)
              $order->name = $name;
              $order->phone  = $phone;
              $order->address   = $address;
-
+             $order->status   = 'not delivered';
              $order->save();
       }
 
@@ -185,4 +188,3 @@ public function confirmorder(Request $request)
 }
 
 }
-
